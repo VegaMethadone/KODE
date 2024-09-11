@@ -1,0 +1,415 @@
+{
+	"info": {
+		"_postman_id": "0bf3dc62-3451-469d-b19f-b971ecb9f5e9",
+		"name": "Документация интерфейса API  для KODE",
+		"description": "Какие случаи я не рассматриваю ?\n\n1. Повторное добавление одного и того же пользователя.\n    \n2. Знаки припянания, которые не находятся в конце слова\n    \n3. Если доступ был запрещен пользователю - пользователю вернет StartFragmentEndFragment (это условность, так делать не надо)\n    \n4. Одни и те же записи можно добавлять повторно\n    \n\nP.S. все POST запросы должны быть использованы единажды, иначе они сломаю тестовые GET запросы на выборку определенных записей пользователя.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38286637"
+	},
+	"item": [
+		{
+			"name": "ping server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/ping",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ping"
+					]
+				},
+				"description": "Первоначальный запрос для теста сервера для проверки его готовности"
+			},
+			"response": []
+		},
+		{
+			"name": "bad ping server",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/ping",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ping"
+					]
+				},
+				"description": "Проверяю, как сервер обрабатывает неправильные запросы"
+			},
+			"response": []
+		},
+		{
+			"name": "new user 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"login\": \"Vega\",\r\n\t\"mail\":  \"omega@gmail.com\",\r\n\t\"password\": \"qweqwe123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				},
+				"description": "Создаю нового пользователя"
+			},
+			"response": []
+		},
+		{
+			"name": "get user 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/login?login=Vega&password=qweqwe123",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "login",
+							"value": "Vega"
+						},
+						{
+							"key": "password",
+							"value": "qweqwe123"
+						}
+					]
+				},
+				"description": "Тут клиент передает логин и пароль в строке запроса для того, чтобы авторизироваться и получить куки"
+			},
+			"response": []
+		},
+		{
+			"name": "new note 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Pushkin\",\r\n    \"body\": \"не зря масква, сполённая пажаром, францусу атдана\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/notes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"notes"
+					]
+				},
+				"description": "После получения куки мы авторизованы и можем добавлять записи как 5 классник для того, чтобы yandex speller их отредактировал, если есть ошибки"
+			},
+			"response": []
+		},
+		{
+			"name": "new note 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Kolotushkin\",\r\n    \"body\": \"Улица Пушкина, дам Колотушкина. Арешки за белки. Вайна — это мир. Свабода — это рыбство. Незнание — сила\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/notes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get note 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/notes/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"notes",
+						"1"
+					]
+				},
+				"description": "Проверка получения единичной записи по IP самой записи. В JWT токене хранится также ID юзера, так что юзер не сможет получить записку, у которой внешний ключ не равен ID юзера."
+			},
+			"response": []
+		},
+		{
+			"name": "get note 1.2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/notes/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"notes",
+						"2"
+					]
+				},
+				"description": "Проверяю вторую записку"
+			},
+			"response": []
+		},
+		{
+			"name": "get  all notes 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/notes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"notes"
+					]
+				},
+				"description": "Выбираю все записки, которые принадлежат нашему юзеру 1"
+			},
+			"response": []
+		},
+		{
+			"name": "почистите куки",
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "удалите куки",
+					"host": [
+						"удалите куки"
+					]
+				},
+				"description": "Тут надо почистить куки для того. чтобы проверить 2 юзера"
+			},
+			"response": []
+		},
+		{
+			"name": "new user  2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"login\": \"Omega\",\r\n\t\"mail\":  \"yandex@yandex.com\",\r\n\t\"password\": \"nopassword123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				},
+				"description": "Создаем нового юзера"
+			},
+			"response": []
+		},
+		{
+			"name": "get user 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/login?login=Omega&password=nopassword123",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "login",
+							"value": "Omega"
+						},
+						{
+							"key": "password",
+							"value": "nopassword123"
+						}
+					]
+				},
+				"description": "Получаем его куки"
+			},
+			"response": []
+		},
+		{
+			"name": "new note 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Братья карамазовы\",\r\n    \"body\": \"Впрочем, странно бы требавать в такое врнмя, как наше, от людей яснасти.\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/notes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"notes"
+					]
+				},
+				"description": "Создаем новую запись"
+			},
+			"response": []
+		},
+		{
+			"name": "get all notes 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/notes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"notes"
+					]
+				},
+				"description": "Получаем все записи, у которых внешний ключ соотвествует ID нашего юзера"
+			},
+			"response": []
+		}
+	]
+}
