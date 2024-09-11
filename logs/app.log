@@ -1,0 +1,9 @@
+{"level":"info","ts":"2024-09-11T22:12:40.035+0300","msg":"Logger initialized"}
+{"level":"info","ts":"2024-09-11T22:12:40.069+0300","msg":"Server is working at: http://127.0.0.1:8080"}
+{"level":"info","ts":"2024-09-11T22:12:41.953+0300","msg":"Server is stoped by host: interrupt"}
+{"level":"info","ts":"2024-09-11T22:41:59.695+0300","msg":"Logger initialized"}
+{"level":"info","ts":"2024-09-11T22:41:59.719+0300","msg":"Server is working at: http://127.0.0.1:8080"}
+{"level":"info","ts":"2024-09-11T22:42:16.949+0300","msg":"Request ping from ip: 127.0.0.1:51657"}
+{"level":"info","ts":"2024-09-11T22:42:16.949+0300","msg":"Success"}
+{"level":"info","ts":"2024-09-11T22:42:21.294+0300","msg":"Server is stoped by host: interrupt"}
+{"level":"info","ts":"2024-09-11T22:42:21.294+0300","msg":"http: Server closed"}

@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./
+    container_name: application
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+  
+  database:
+    container_name: postgres
+    restart: always
+    build: ./build/postgres/
+    ports:
+      - 5432:5432
